@@ -76,5 +76,8 @@
             @yield('content')
         </main>
     </div>
+<footer>
+Projekt i wykonanie: Dawid Kowalski & Kamil Wiśniewski
+</footer>
 </body>
 </html>

@@ -8,4 +8,10 @@
 <div id="entryContent" class="entryContent">
 {{$entry->content}}
 </div>
+<h2>Komentarze</h2>
+<div id="comments" class="comments">
+<p>{{$comments->content}}</p>
+<hr />
+<p>Napisano: {{$comments->created_at}}</p>
+</div>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Comment;
 
 class PostsController extends Controller
 {
@@ -14,7 +15,8 @@ class PostsController extends Controller
      */
     public function index(){
 //$posts = Post::get()->paginate(2);
-$posts = Post::paginate(20);
+$posts = Post::orderBy('created_at', 'desc')->get();
+//$posts = Post::paginate(20);
 
 return view('posts.index')->with('posts', $posts);
     }//endFunction
@@ -56,7 +58,9 @@ return redirect('/posts')->with('success', 'Post szczęśliwie dodany! Happy cod
      */
     public function show($id){
 $entry = Post::find($id);
-return view('posts.show')->with('entry', $entry);
+$comments = Comment::all();
+
+return view('posts.show')->with('entry', $entry)->with('comments', $comments);
 }
 
     /**
