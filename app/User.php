@@ -36,4 +36,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-}
+//get the tasks owned by the specific user
+public function tasks(){
+return $this->hasMany(Post::class, 'postid');
+}//endFunction
+}//endClass

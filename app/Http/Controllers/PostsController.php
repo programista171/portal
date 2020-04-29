@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 
 class PostsController extends Controller
 {
@@ -12,7 +13,10 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-return view('posts.index');
+//$posts = Post::get()->paginate(2);
+$posts = Post::paginate(20);
+
+return view('posts.index')->with('posts', $posts);
     }//endFunction
 
     /**
@@ -31,8 +35,18 @@ return view('posts.create');
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
+$this->validate($request, [
+'content' => 'required'
+]);
 
-    }//endFunction
+$post = new Post();
+$post->content = $request->input('content');
+$post->userid = auth()->user()->id;
+$post->save();
+
+return redirect('/posts')->with('success', 'Post szczęśliwie dodany! Happy coding!');
+
+}//endFunction
 
     /**
      * Display the specified resource.
@@ -40,10 +54,10 @@ return view('posts.create');
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    public function show($id){
+$entry = Post::find($id);
+return view('posts.show')->with('entry', $entry);
+}
 
     /**
      * Show the form for editing the specified resource.
