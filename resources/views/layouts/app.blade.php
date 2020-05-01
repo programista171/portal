@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Facebook Colne') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -76,5 +76,8 @@
             @yield('content')
         </main>
     </div>
+<footer>
+Projekt i wykonanie: Dawid Kowalski & Kamil Wiśniewski
+</footer>
 </body>
 </html>
