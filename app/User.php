@@ -37,14 +37,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 //get the posts owned by the specific user
-public function posts(){
-return $this->hasMany(Post::class, 'userid');
-}//endFunction
+	public function posts(){
+		return $this->hasMany(Post::class, 'userid');
+	}//endFunction
 
 //get the comments owned by the specific user
-public function comments(){
-return $this->hasMany(Comment::class, 'userid');
-}//endFunction
+	public function comments(){
+		return $this->hasMany(Comment::class, 'userid');
+	}//endFunction
 
+
+//get the reactions for the specific post
+	public function reactions(){
+		return $this->hasMany(Reaction::class, 'userid');
+}//endFunction
 
 }//endClass
