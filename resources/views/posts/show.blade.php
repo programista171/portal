@@ -8,9 +8,10 @@
 <div id="entryContent" class="entryContent">
 {{$entry->content}}
 </div>
-<h2>Komentarze</h2>
+<h2>Komentarze {{count($comments)}}</h2>
 <div id="comments" class="comments">
-@foreach($entry->comments as $comment)
+@foreach($comments as $comment)
+<p>{{$comment->user->firstname}} {{$comment->user->lastname}} skomentowano:</p>
 <p>{{$comment->content}}</p>
 <hr />
 <p>Napisano: {{$comment->created_at}}</p>
@@ -18,7 +19,7 @@
 </div>
 <h3>Skomentuj</h3>
 <div id="giveComment" class="giveComment">
-	<form action="{{route("comments.store")}}" method="post">
+	<form action="/comments/store" method="post">
 		@csrf
 		<label for="comment">
 Twój komentarz
