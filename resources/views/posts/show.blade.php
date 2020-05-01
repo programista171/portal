@@ -10,8 +10,22 @@
 </div>
 <h2>Komentarze</h2>
 <div id="comments" class="comments">
-<p>{{$comments->content}}</p>
+@foreach($entry->comments as $comment)
+<p>{{$comment->content}}</p>
 <hr />
-<p>Napisano: {{$comments->created_at}}</p>
+<p>Napisano: {{$comment->created_at}}</p>
+@endforeach
+</div>
+<h3>Skomentuj</h3>
+<div id="giveComment" class="giveComment">
+	<form action="{{route("comments.store")}}" method="post">
+		@csrf
+		<label for="comment">
+Twój komentarz
+            </label>
+		<input type="text" name="comment" id = "comment">
+		<input type="hidden" name="postid" id="postid" value="{{$entry->id}}">
+		<button type="submit" name="add" id="add">Opublikuj</button>
+	</form>
 </div>
 @endsection

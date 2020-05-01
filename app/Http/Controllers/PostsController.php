@@ -58,9 +58,9 @@ return redirect('/posts')->with('success', 'Post szczęśliwie dodany! Happy cod
      */
     public function show($id){
 $entry = Post::find($id);
-$comments = Comment::all();
+//$comments = Comment::all();
 
-return view('posts.show')->with('entry', $entry)->with('comments', $comments);
+return view('posts.show')->with('entry', $entry);
 }
 
     /**
