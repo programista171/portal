@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\Comment;
+use App\Reaction;
 
 class PostsController extends Controller
 {
@@ -30,13 +32,8 @@ return view('posts.index')->with('posts', $posts);
 return view('posts.create');
     }//endFunction
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request){
+
+    public function createPost(Request $request){
 $this->validate($request, [
 'content' => 'required'
 ]);
@@ -92,8 +89,23 @@ return view('posts.show')->with('entry', $entry)->with('comments', $comments);
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
-}
+    public function destroy($id){
+}//endFunction
+
+	public function createComment(Request $request){
+		$this->validate($request, [
+			'comment' => 'required'
+		]);
+		$comment = new Comment();
+		$comment->content = $request->comment;
+		$comment->userid = Auth::user()->id;
+		$comment->postid = $request->postid;
+		$comment->save();
+		return redirect("posts/$request->postid");
+	}//endFunction
+
+
+	public function createReaction(Request $request){
+
+	}//endFunction
+}//endClass

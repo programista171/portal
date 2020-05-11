@@ -22,6 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/posts', 'PostsController');
-Route::get('/comments', 'CommentsController@index');
-Route::post('/comments/store', 'CommentsController@store');
+Route::post('/posts/createpost', 'PostsController@createPost');
+Route::post('/posts/createcomment', 'PostsController@createComment');
+Route::get('/users/{id}', 'UsersController@index');
 Route::post('/reactions/store', 'ReactionsController@store');

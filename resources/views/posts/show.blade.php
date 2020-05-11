@@ -19,7 +19,7 @@
 </div>
 <h3>Skomentuj</h3>
 <div id="giveComment" class="giveComment">
-	<form action="/comments/store" method="post">
+	<form action="{{url('/posts/createcomment')}}" method="post">
 		@csrf
 		<label for="comment">
 Twój komentarz
