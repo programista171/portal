@@ -26,3 +26,4 @@ Route::post('/posts/createpost', 'PostsController@createPost');
 Route::post('/posts/createcomment', 'PostsController@createComment');
 Route::get('/users/{id}', 'UsersController@index');
 Route::post('/reactions/store', 'ReactionsController@store');
+Route::post('/invitations/invite', 'InvitationsController@invite');

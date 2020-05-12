@@ -66,11 +66,15 @@
                                     </form>
                                 </div>
                             </li>
+
+@include('layouts.nav')
+
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
+
 
         <main class="py-4">
             @yield('content')

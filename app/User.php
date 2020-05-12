@@ -50,5 +50,9 @@ class User extends Authenticatable
 //get the reactions for the specific post
 	public function reactions(){
 		return $this->hasMany(Reaction::class, 'userid');
-}//endFunction
+	}//endFunction
+
+	public function invitations(){
+		return $this->hasMany(Invitation::class, 'invited');
+	}//endFunction
 }//endClass
