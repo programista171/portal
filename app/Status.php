@@ -1,6 +1,6 @@
 <?php
 
-namespace Hootlex\Friendships;
+namespace App;
 
 /**
  * Class Status.
