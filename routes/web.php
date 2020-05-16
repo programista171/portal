@@ -26,4 +26,7 @@ Route::post('/posts/createpost', 'PostsController@createPost');
 Route::post('/posts/createcomment', 'PostsController@createComment');
 Route::get('/users/{id}', 'UsersController@index');
 Route::post('/reactions/store', 'ReactionsController@store');
-Route::post('/invitations/invite', 'InvitationsController@invite');
+Route::post('/friends/invite', 'FriendsController@invite');
+Route::get('/friends/{id}', 'FriendsController@listFriends');
+Route::get('/requests', 'FriendsController@listRequests');
+Route::post('/requests_decision', 'FriendsController@decide');

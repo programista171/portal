@@ -32,7 +32,7 @@ trait Friendable
 
         $this->friends()->save($friendship);
 
-        Event::fire('friendships.sent', [$this, $recipient]);
+//        Event::fire('friendships.sent', [$this, $recipient]);
 
         return $friendship;
 
@@ -47,7 +47,7 @@ trait Friendable
     {
         $deleted = $this->findFriendship($recipient)->delete();
 
-        Event::fire('friendships.cancelled', [$this, $recipient]);
+//        Event::fire('friendships.cancelled', [$this, $recipient]);
 
         return $deleted;
     }
@@ -93,7 +93,7 @@ trait Friendable
             'status' => Status::ACCEPTED,
         ]);
 
-        Event::fire('friendships.accepted', [$this, $recipient]);
+//        Event::fire('friendships.accepted', [$this, $recipient]);
 
         return $updated;
     }
@@ -248,8 +248,7 @@ trait Friendable
      * @param string $groupSlug
      *
      */
-    public function getAcceptedFriendships($groupSlug = '')
-    {
+    public function getAcceptedFriendships($groupSlug = ''){
         return $this->findFriendships(Status::ACCEPTED, $groupSlug)->get();
     }
 
@@ -363,6 +362,14 @@ trait Friendable
         return $friendsCount;
     }
 
+
+//dopisane przez Kamila
+
+    public function getRequestsCount($groupSlug = '')
+    {
+        $friendsCount = $this->findFriendships(Status::PENDING, $groupSlug)->count();
+        return $friendsCount;
+    }
     /**
      * @param Model $recipient
      *
