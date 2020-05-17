@@ -6,3 +6,11 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.footer {
+    position: relative;
+    bottom: 150px;
+    height: 150px;
+    clear:both;
+    padding-top:20px;
+}
