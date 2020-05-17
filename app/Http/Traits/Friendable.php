@@ -109,7 +109,7 @@ trait Friendable
             'status' => Status::DENIED,
         ]);
 
-        Event::fire('friendships.denied', [$this, $recipient]);
+//        Event::fire('friendships.denied', [$this, $recipient]);
 
         return $updated;
     }
