@@ -21,7 +21,7 @@ class MessagePushed
      */
     public function __construct()
     {
-        //
+
     }
 
     /**
@@ -31,6 +31,6 @@ class MessagePushed
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return new PrivateChannel('messages');
     }
 }

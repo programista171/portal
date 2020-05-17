@@ -260,6 +260,7 @@
                 return false;
             }
         });
-
     </script>
+    <script src="{{ asset("/js/socket.io.js") }}"></script>
+    <script src="{{ asset("/js/messages_index.js") }}"></script>
 @endsection

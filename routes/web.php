@@ -27,3 +27,8 @@ Route::post('/posts/createcomment', 'PostsController@createComment');
 Route::get('/users/{id}', 'UsersController@index');
 Route::post('/reactions/store', 'ReactionsController@store');
 Route::get("/messages", "Messages@index");
+
+Route::get('messagePusher', function () {
+    event(new \App\Events\MessagePushed());
+    return "event fired";
+});
