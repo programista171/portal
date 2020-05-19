@@ -14,5 +14,8 @@
 		<button type="submit" name="like" id="like">Lubię to!</button>
 		<button type="submit" name="dislike" id="dislike">Nie lubię tego!</button>
 	</form>
+@if(Auth::user()->id === $post->user->id)
+To mój post
+@endif
 	@endforeach
 @endsection
