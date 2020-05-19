@@ -20,6 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/login/authenticate', 'Auth\LoginController@authenticate');
 
 Route::resource('/posts', 'PostsController');
 Route::post('/posts/createpost', 'PostsController@createPost');
