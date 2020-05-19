@@ -30,3 +30,7 @@ Route::post('/friends/invite', 'FriendsController@invite');
 Route::get('/friends/{id}', 'FriendsController@listFriends');
 Route::get('/requests', 'FriendsController@listRequests');
 Route::post('/requests_decision', 'FriendsController@decide');
+Route::get('/settings', function(){
+return view('users.settings.index');
+});
+Route::post('/settings/image', 'UsersController@imageAdd');

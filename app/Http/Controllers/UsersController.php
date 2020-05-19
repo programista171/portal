@@ -7,8 +7,15 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 
 class UsersController extends Controller{
-public function index($id){
-$user = User::find($id);
-return view('users.index')->with('user', $user);
-}//endFunction
+	public function index($id){
+		$user = User::find($id);
+		return view('users.index')->with('user', $user);
+	}//endFunction
+
+
+	public function imageAdd(Request $request){
+return 'It works!';
+
+	}//endFunction
+
 }//endClass
