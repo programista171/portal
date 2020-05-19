@@ -18,4 +18,15 @@ class Post extends Model{
 		return $this->hasMany(Reaction::class, 'postid');
 	}//endFunction
 
+    /**
+     * @param $mysqlDate string date
+     * @return string natural date
+     */
+    public function getDate($mysqlDate) {
+	    return $mysqlDate;
+    }
+
+    public function lastComments($quantity) {
+
+    }
 }//endClass

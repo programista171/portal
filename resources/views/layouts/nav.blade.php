@@ -4,11 +4,16 @@
 <li class="nav-item">
     <a class="nav-link" href="{{url('/requests')}}">
         Zaproszenia
-        ({{Auth::user()->getFriendRequests()->count()}})
+        <?php
+            $friendRequest = Auth::user()->getFriendRequests()->count()
+        ?>
+        @if( $friendRequest > 0 )
+            ({{ $friendRequest  }})
+        @endif
     </a>
 </li>
 <li class="nav-item">
-    <a href="#" class="nav-link">Wiadomości</a>
+    <a href="{{ route("messages")  }}" class="nav-link">Wiadomości</a>
 </li>
 <li class="nav-item">
     <a href="#" class="nav-link">Powiadomienia</a>
