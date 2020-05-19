@@ -18,3 +18,9 @@ Route::post('/friends/invite', 'FriendsController@invite');
 Route::get('/friends/{id}', 'FriendsController@listFriends');
 Route::get('/requests', 'FriendsController@listRequests');
 Route::post('/requests_decision', 'FriendsController@decide');
+Route::get("/messages", "Messages@index");
+
+Route::get('messagePusher', function () {
+    event(new \App\Events\MessagePushed());
+    return "event fired";
+});
