@@ -15,14 +15,18 @@ class UsersController extends Controller{
 
 
 	public function imageAdd(Request $request){
-$profile = Auth::user()->profile;
-//var_dump($profile);
-$image = $request->file('image');
-$uploader = Auth::user()->login;
-$name = $uploader . '.' . $image->getClientOriginalExtension();
-$profile->image = "profile_images/$name";
-$profile->save();
-return $image->move('profile_images', $name);
+		$this->validate($request, [
+			'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+		]);
+
+		$profile = Auth::user()->profile;
+		$image = $request->file('image');
+		$uploader = Auth::user()->login;
+		$name = $uploader . '.' . $image->getClientOriginalExtension();
+		$profile->image = "profile_images/$name";
+		$profile->save();
+		$image->move('profile_images', $name);
+		return redirect()->back()->with('success', 'Przesłano zdjęcie');
 	}//endFunction
 
 }//endClass
