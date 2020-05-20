@@ -17,7 +17,7 @@ class CreateProfilesTable extends Migration
             $table->id();
 $table->foreignId('user_id');
 $table->char('gender')->nullable();
-$table->string('image')->nullable();
+$table->string('image')->nullable()->default('profile_images/default.jpg');
 $table->text('description')->nullable();
             $table->timestamps();
         });
