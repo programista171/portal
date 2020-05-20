@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reaction extends Model
 {
     protected $fillable = [
-        "userId", "postId", "ispossitive"
+        "userid", "postid", "ispositive"
     ];
 
     public function post()
