@@ -15,37 +15,36 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-//$posts = Post::get()->paginate(2);
-$posts = Post::orderBy('created_at', 'desc')->get();
-//$posts = Post::paginate(20);
+	public function index(){
+		//$posts = Post::get()->paginate(2);
+		$posts = Post::orderBy('created_at', 'desc')->get();
+		//$posts = Post::paginate(20);
 
-return view('posts.index')->with('posts', $posts);
-    }//endFunction
+		return view('posts.index')->with('posts', $posts);
+	}//endFunction
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(){
-return view('posts.create');
-    }//endFunction
+	public function create(){
+		return view('posts.create');
+	}//endFunction
 
 
-    public function createPost(Request $request){
-$this->validate($request, [
-'content' => 'required'
-]);
+	public function createPost(Request $request){
+		$this->validate($request, [
+			'content' => 'required'
+		]);
 
-$post = new Post();
-$post->content = $request->input('content');
-$post->userid = auth()->user()->id;
-$post->save();
+		$post = new Post();
+		$post->content = $request->input('content');
+		$post->userid = auth()->user()->id;
+		$post->save();
 
-return redirect('/posts')->with('success', 'Post szczęśliwie dodany! Happy coding!');
-
-}//endFunction
+		return redirect('/posts')->with('success', 'Post szczęśliwie dodany! Happy coding!');
+	}//endFunction
 
     /**
      * Display the specified resource.
@@ -53,12 +52,12 @@ return redirect('/posts')->with('success', 'Post szczęśliwie dodany! Happy cod
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id){
-$entry = Post::find($id);
-//$comments = Comment::all();
-$comments = $entry->comments;
-return view('posts.show')->with('entry', $entry)->with('comments', $comments);
-}
+	public function show($id){
+		$entry = Post::find($id);
+		//$comments = Comment::all();
+		$comments = $entry->comments;
+		return view('posts.show')->with('entry', $entry)->with('comments', $comments);
+	}
 
     /**
      * Show the form for editing the specified resource.
@@ -66,7 +65,7 @@ return view('posts.show')->with('entry', $entry)->with('comments', $comments);
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+	public function edit($id)
     {
         //
     }

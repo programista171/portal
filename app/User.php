@@ -57,4 +57,9 @@ class User extends Authenticatable
 	public function invitations(){
 		return $this->hasMany(Invitation::class, 'invited');
 	}//endFunction
+
+	public function profile(){
+		return $this->hasOne(Profile::class);
+	}//endFunction
+
 }//endClass

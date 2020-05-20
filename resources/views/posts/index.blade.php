@@ -5,6 +5,7 @@
 		<button type="submit">Opublikuj</button>
 	</form>
 	@foreach($posts as $post)
+<img alt="Zdjęcie profilowe użytkownika {{$post->user->firstname}} {{$post->user->lastname}}" src="{{url('')}}/public/{{$post->user->profile->image}}">
 		<h2><a href="{{url('/users')}}/{{$post->user->id}}">{{$post->user->firstname}} {{$post->user->lastname}}</a></h2>
 		<p>{{$post->created_at}}</p>
 		<p>{{$post->content}}</p>

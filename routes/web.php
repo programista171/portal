@@ -26,3 +26,7 @@ Route::get('messagePusher', function () {
     event(new \App\Events\MessagePushed());
     return "event fired";
 });
+Route::get('/settings', function(){
+return view('users.settings.index');
+});
+Route::post('/settings/image', 'UsersController@imageAdd');
