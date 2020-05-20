@@ -104,7 +104,15 @@ class PostsController extends Controller
 	}//endFunction
 
 
-	public function createReaction(Request $request){
+	public function react(){
+$ispositive = false;
+if($request->input('reaction') == 'like')
+$ispositive = true;
 
+Reaction::create([
+'userid'=>Auth::user()->id,
+'postid'=>$request->input('post_id'),
+'ispositive'=>$ispositive
+]);
 	}//endFunction
 }//endClass
