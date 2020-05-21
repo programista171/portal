@@ -12,9 +12,8 @@ Route::get('/', function () {
     }
 });
 
-Auth::routes();
-Route::post('/login/authenticate', 'Auth\LoginController@authenticate')->middleware("auth");
 
+Auth::routes();
 
 Route::resource('/posts', 'PostsController');
 Route::post('/posts/createpost', 'PostsController@createPost')->middleware("auth");
@@ -30,7 +29,8 @@ Route::get("/messages", "Messages@index")->name("messages")->middleware("auth");
 Route::get('messagePusher', function () {
     event(new \App\Events\MessagePushed());
     return "event fired";
-});
+})->middleware("auth");
+
 Route::get('/settings', function () {
     return view('users.settings.index');
 })->middleware("auth");

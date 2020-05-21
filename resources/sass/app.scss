@@ -7,17 +7,6 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-footer, nav {
-       background: #2c3e50 !important;
-    color: white;
-    text-align: center;
-}
-
-nav a {
-    color: white !important;
-}
-
-// messages
 body {
     background: #27ae60;
     font-family: "proxima-nova", "Source Sans Pro", sans-serif;
@@ -28,6 +17,22 @@ body {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
     -webkit-font-smoothing: antialiased;
 }
+
+.btn.btn-primary {
+    background: #2c3e50 !important;
+}
+
+footer, nav {
+    background: #2c3e50 !important;
+    color: white;
+    text-align: center;
+}
+
+nav a {
+    color: white !important;
+}
+
+// messages
 
 footer {
     display: block;
