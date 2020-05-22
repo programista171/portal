@@ -5,13 +5,13 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Scout\Searchable;
 use App\Http\Traits\Friendable;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable{
     use Notifiable;
     use Friendable;
-
+use Searchable;
     /**
      * The attributes that are mass assignable.
      *
@@ -60,6 +60,10 @@ class User extends Authenticatable
 
 	public function profile(){
 		return $this->hasOne(Profile::class);
+	}//endFunction
+
+	public function searchableAs(){
+		return 'users_index';
 	}//endFunction
 
 }//endClass

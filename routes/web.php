@@ -30,3 +30,4 @@ Route::get('/settings', function(){
 return view('users.settings.index');
 });
 Route::post('/settings/image', 'UsersController@imageAdd');
+Route::get('/search', 'SearchController@search')->name('search');

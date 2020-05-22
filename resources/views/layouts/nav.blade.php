@@ -27,4 +27,12 @@
             @csrf
         </form>
     </div>
+<form action="{{route('search')}}">
+<label for="searched">
+Czego szukasz?
+</label>
+<input type="text" id="q" name="q">
+<input type="text" id="q" class="d-none" class="d-md-block">
+<button type="submit">Szukaj</button>
+</form>
 </li>
