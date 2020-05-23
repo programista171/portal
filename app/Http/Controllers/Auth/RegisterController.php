@@ -7,8 +7,11 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use App\Profile;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Mockery\Exception;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class RegisterController extends Controller
 {
@@ -45,7 +48,7 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -62,21 +65,45 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \App\User
      */
     protected function create(array $data)
     {
-$user = User::create([
+        $user = User::create([
             'login' => $data['login'],
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-$profile = Profile::create([
-'user_id' => $user->id
-]);
-return $user;
+        $profile = Profile::create([
+            'user_id' => $user->id
+        ]);
+        return $user;
     }//endFunction
+
+    /**
+     * @param Request $request the login you want to check
+     * @return bool
+     */
+    public function isFreeLogin(Request $request): bool
+    {
+        $login = $request->input("login");
+        $loginQuantity = User::all()->where("login", "=", $login)->count();
+        if ($loginQuantity === 0) return true;
+        else return false;
+    }
+
+    /**
+     * @param Request $request the email you want to check
+     * @return bool
+     */
+    public function isFreeEmail(Request $request): bool
+    {
+        $email = $request->input("email");
+        $emailQuantity = User::all()->where("email", "=", $email)->count();
+        if ($emailQuantity === 0) return true;
+        else return false;
+    }
 }//endClass
