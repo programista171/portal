@@ -1,4 +1,7 @@
 <li class="nav-item">
+<form action="{{route('search')}}">
+<input type="text" id="q" name="q" id="searched" placeholder="Czego szukasz?">
+</form>
     <a class="nav-link" href="/posts">Strona główna</a>
 </li>
 <li class="nav-item">
@@ -27,12 +30,4 @@
             @csrf
         </form>
     </div>
-<form action="{{route('search')}}">
-<label for="searched">
-Czego szukasz?
-</label>
-<input type="text" id="q" name="q">
-<input type="text" id="q" class="d-none" class="d-md-block">
-<button type="submit">Szukaj</button>
-</form>
 </li>
