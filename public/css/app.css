@@ -10882,34 +10882,6 @@ a.text-dark:focus {
   }
 }
 
-footer,
-nav {
-  background: #2c3e50 !important;
-  color: white;
-  text-align: center;
-}
-
-nav a {
-  color: white !important;
-}
-
-body {
-  background: #27ae60;
-  font-family: "proxima-nova", "Source Sans Pro", sans-serif;
-  font-size: 1em;
-  letter-spacing: 0.1px;
-  color: #32465a;
-  text-rendering: optimizeLegibility;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
-  -webkit-font-smoothing: antialiased;
-}
-
-footer {
-  display: block;
-  padding: 2vh 0;
-  margin-bottom: 0;
-}
-
 #frame {
   width: 95%;
   height: 82vh;
@@ -11673,5 +11645,62 @@ footer {
 
 #frame .content .message-input .wrap button:focus {
   outline: none;
+}
+
+body {
+  background: lightgray;
+  font-family: "proxima-nova", "Source Sans Pro", sans-serif;
+  font-size: 1em;
+  letter-spacing: 0.1px;
+  color: #333;
+}
+
+.btn.btn-primary {
+  background: #2c3e50 !important;
+}
+
+footer,
+nav {
+  background: #2c3e50 !important;
+  color: white;
+  text-align: center;
+}
+
+footer {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: white !important;
+}
+
+.card {
+  border: none;
+}
+
+.card-header {
+  background: #2c3e50;
+  color: white;
+  font-weight: bold;
+}
+
+.profile-image {
+  height: 30px;
+  width: auto;
+}
+
+input.error {
+  outline: red;
+}
+
+label.error {
+  color: #e6550d;
+  font-size: 80%;
+  margin-left: 8px;
 }
 

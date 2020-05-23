@@ -7,21 +7,32 @@
 	@endif
 	@if(count($posts) > 0)
 		<h3>Posty</h3>
-		@foreach($posts as $post)
-			<img alt="Zdjęcie profilowe użytkownika {{$post->user->firstname}} {{$post->user->lastname}}" src="{{url('')}}/public/{{$post->user->profile->image}}">
-			<h4><a href="{{url('/users')}}/{{$post->user->id}}">{{$post->user->firstname}} {{$post->user->lastname}}</a></h2>
-			<p>{{$post->created_at}}</p>
-			<p>{{$post->content}}</p>
-			<a href="{{url('/posts')}}/{{$post->id}}">Otwarte zdarzenie</a>
-			<form method="POST" action="{{url('/reactions/store')}}">
-				@csrf
-				<button type="submit" name="like" id="like">Lubię to!</button>
-				<button type="submit" name="dislike" id="dislike">Nie lubię tego!</button>
-			</form>
-			@if(Auth::user()->id === $post->user->id)
-				To mój post
-			@endif
-		@endforeach
+    @foreach($posts as $post)
+        <div class="card">
+            <div class="card-header row">
+                <img alt="Zdjęcie profilowe użytkownika {{$post->user->firstname}} {{$post->user->lastname}}"
+                     src="{{asset($post->user->profile->image) }}" class="profile-image">
+                <h2>
+                    <a href="{{url('/users')}}/{{$post->user->id}}">{{$post->user->firstname}} {{$post->user->lastname}}</a>
+                </h2>
+                <span class="ml-auto"> {{$post->created_at}}</span>
+            </div>
+            <div class="card-body">
+                <p>{{$post->content}}</p>
+            </div>
+            <div class="card-footer row">
+                <a href="{{url('/posts')}}/{{$post->id}}" class="btn btn-primary mr-auto"> Otwarte zdarzenie </a>
+                <form method="POST" action="{{url('/reactions/store')}}">
+                    @csrf
+                    <button type="submit" name="like" id="like" class="btn btn-success">Lubię to!</button>
+                    <button type="submit" name="dislike" id="dislike" class="btn btn-danger">Nie lubię tego!</button>
+                </form>
+                @if(Auth::user()->id === $post->user->id)
+                    To mój post
+                @endif
+            </div>
+        </div>
+    @endforeach
 	@endif
 	@if(count($users) > 0)
 		<h3>Osoby</h3>
