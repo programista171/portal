@@ -35,3 +35,6 @@ Route::get('/settings', function () {
     return view('users.settings.index');
 })->middleware("auth");
 Route::post('/settings/image', 'UsersController@imageAdd')->middleware("auth");
+
+Route::get("/register/isFreeLogin", "Auth\RegisterController@isFreeLogin");
+Route::get("/register/isFreeEmail", "Auth\RegisterController@isFreeEmail");

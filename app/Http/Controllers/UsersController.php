@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Profile;
+use Mockery\Exception;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class UsersController extends Controller{
 	public function index($id){
