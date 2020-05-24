@@ -1,5 +1,6 @@
 <?php
 
+use http\Client\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,8 +20,12 @@ Route::get('/friends/{id}', 'FriendsController@listFriends');
 Route::get('/requests', 'FriendsController@listRequests');
 Route::post('/requests_decision', 'FriendsController@decide');
 Route::get("/messages", "MessagesController@index")->name("messages");
+Route::get("/conversation/{any}", "MessagesController@conversation")->name("conversation")->middleware("auth");
+Route::post("/messages/sendMessage", "MessagesController@sendMessage")->name("messages.send")->middleware("auth");
 
 Route::get('messagePusher', function () {
     event(new \App\Events\MessagePushed());
     return "event fired";
 });
+
+

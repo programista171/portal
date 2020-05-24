@@ -2,17 +2,21 @@
 
 namespace App\Events;
 
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Console\Scheduling\Event;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class MessagePushed
+class MessagePushed extends Event implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    public $message = "test message";
 
     /**
      * Create a new event instance.
@@ -21,7 +25,6 @@ class MessagePushed
      */
     public function __construct()
     {
-
     }
 
     /**
@@ -31,6 +34,6 @@ class MessagePushed
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('messages');
+        return new Channel("message");
     }
 }
