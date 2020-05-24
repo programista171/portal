@@ -16,19 +16,38 @@ class UsersController extends Controller{
 	}//endFunction
 
 
-	public function imageAdd(Request $request){
+	public function editProfile(){
+		return view('users.settings');
+	}//endFunction
+
+	public function updateProfile(Request $request){
 		$this->validate($request, [
-			'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+			'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 		]);
 
+
+//edycja danych usera
+		$user = Auth::user();
+		$user->firstname = $request->input('fname');
+		$user->lastname = $request->input('lname');
+		$user->login = $request->input('login');
+		$user->save();
+
+//personalizacja profilu
 		$profile = Auth::user()->profile;
-		$image = $request->file('image');
-		$uploader = Auth::user()->login;
-		$name = $uploader . '.' . $image->getClientOriginalExtension();
-		$profile->image = "profile_images/$name";
+		$profile->description = $request->desc;
+		if($request->has('gender'))
+			$profile->gender = $request->gender;
+		if($request->has('image')){
+			$image = $request->file('image');
+			$uploader = Auth::user()->login;
+			$name = $uploader . '.' . $image->getClientOriginalExtension();
+			$profile->image = "profile_images/$name";
+			$image->move('profile_images', $name);
+		}//endIf
 		$profile->save();
-		$image->move('profile_images', $name);
-		return redirect()->back()->with('success', 'Przesłano zdjęcie');
+
+		return redirect()->back()->with('success', 'Zaktualizowano');
 	}//endFunction
 
 }//endClass

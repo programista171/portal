@@ -32,10 +32,8 @@ Route::get('messagePusher', function () {
 });
 Route::get('/search', 'SearchController@search')->name('search')->middleware("auth");
 
-Route::get('/settings', function () {
-    return view('users.settings.index');
-})->middleware("auth");
-Route::post('/settings/image', 'UsersController@imageAdd')->middleware("auth");
+Route::get('/settings', 'UsersController@editProfile')->name('settings.edit')->middleware("auth");
+Route::post('/settings', 'UsersController@updateProfile')->name('settings.update')->middleware("auth");
 
 Route::get("/register/isFreeLogin", "Auth\RegisterController@isFreeLogin");
 Route::get("/register/isFreeEmail", "Auth\RegisterController@isFreeEmail");

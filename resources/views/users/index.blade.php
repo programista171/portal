@@ -6,7 +6,18 @@
 		@if(Auth::user()->id != $user->id)
 @include('users.requests_decision')
 @else
-<a href="{{url('/settings')}}">Ustawienia</a>
+<a href="{{route("settings.edit")}}">Ustawienia</a>
 		@endif
 		<a href="{{url('/friends')}}/{{$user->id}}">Znajomi</a>
+<p>
+Imię: {{$user->firstname}}
+</p>
+<p>
+Nazwisko: {{$user->lastname}}
+</p>
+<p>
+Płeć: {{$user->profile->gender}}
+</p>
+<p>
+Opis: {{$user->profile->description}}</p>
 @endsection
