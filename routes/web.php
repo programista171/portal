@@ -15,7 +15,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::resource('/posts', 'PostsController');
+Route::resource('/posts', 'PostsController')->middleware("auth");
 Route::post('/posts/createpost', 'PostsController@createPost')->middleware("auth");
 Route::post('/posts/createcomment', 'PostsController@createComment')->middleware("auth");
 Route::get('/users/{id}', 'UsersController@index')->middleware("auth");
