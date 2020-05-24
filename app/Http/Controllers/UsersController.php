@@ -12,12 +12,24 @@ use phpDocumentor\Reflection\Types\Boolean;
 class UsersController extends Controller{
 	public function index($id){
 		$user = User::find($id);
+		switch($user->profile->gender == 'm'){
+			case 'm':
+				$user->profile->gender = 'mężczyzna';
+				break;
+			case 'f':
+				$user->profile->gender = 'kobieta';
+				break;
+			default:
+				$user->profile->gender = 'niezdefiniowana';
+				break;
+			}//endSwitch
 		return view('users.index')->with('user', $user);
 	}//endFunction
 
 
 	public function editProfile(){
-		return view('users.settings');
+		$user = Auth::user();
+		return view('users.settings')->with('user', $user);
 	}//endFunction
 
 	public function updateProfile(Request $request){
