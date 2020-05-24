@@ -66,3 +66,22 @@ label.error {
     font-size: 80%;
     margin-left: 8px;
 }
+
+.dropdown-item {
+    background: #32465a;
+    text-align: center;
+}
+
+.dropdown-item:hover {
+    background: #2c3e50;
+}
+
+.dropdown-menu {
+    padding: 0;
+}
+
+.dropdown-divider {
+    margin: 0;
+    padding: 0;
+    border-color: white;
+}
