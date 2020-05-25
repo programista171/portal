@@ -41,6 +41,32 @@
             </div>
             <div class="col-12 col-md-8 overflow-auto">
                 <h3 class="text-center"> Ostatnie wpisy </h3>
+				@foreach($entries as $entry)
+        <div class="card">
+            <div class="card-header row">
+                <img alt="Zdjęcie profilowe użytkownika {{$entry->user->firstname}} {{$entry->user->lastname}}"
+                     src="{{asset($entry->user->profile->image) }}" class="profile-image">
+                <h3>
+                    <a href="{{url('/users')}}/{{$entry->user->id}}">{{$entry->user->firstname}} {{$entry->user->lastname}}</a>
+                </h3>
+                <span class="ml-auto"> {{$entry->created_at}}</span>
+            </div>
+            <div class="card-body">
+                <p>{{$entry->content}}</p>
+            </div>
+            <div class="card-footer row">
+                <a href="{{url('/posts')}}/{{$entry->id}}" class="btn btn-primary mr-auto"> Otwarte zdarzenie </a>
+                <form method="POST" action="{{url('/reactions/store')}}">
+                    @csrf
+                    <button type="submit" name="like" id="like" class="btn btn-success">Lubię to!</button>
+                    <button type="submit" name="dislike" id="dislike" class="btn btn-danger">Nie lubię tego!</button>
+                </form>
+                @if(Auth::user()->id === $entry->user->id)
+                    To mój post
+                @endif
+            </div>
+        </div>
+				@endforeach
             </div>
         </div>
     </div>

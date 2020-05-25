@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Post;
 use App\Profile;
 use Mockery\Exception;
 use phpDocumentor\Reflection\Types\Boolean;
@@ -12,7 +13,7 @@ use phpDocumentor\Reflection\Types\Boolean;
 class UsersController extends Controller{
 	public function index($id){
 		$user = User::find($id);
-		switch($user->profile->gender == 'm'){
+		switch($user->profile->gender){
 			case 'm':
 				$user->profile->gender = 'mężczyzna';
 				break;
@@ -23,7 +24,8 @@ class UsersController extends Controller{
 				$user->profile->gender = 'niezdefiniowana';
 				break;
 			}//endSwitch
-		return view('users.index')->with('user', $user);
+$entries = $user->posts->take(5);
+		return view('users.index')->with('user', $user)->with('entries', $entries);
 	}//endFunction
 
 
@@ -43,6 +45,7 @@ class UsersController extends Controller{
 		$user->firstname = $request->input('fname');
 		$user->lastname = $request->input('lname');
 		$user->login = $request->input('login');
+		$user->email = $request->input('email');
 		$user->save();
 
 //personalizacja profilu
@@ -59,7 +62,7 @@ class UsersController extends Controller{
 		}//endIf
 		$profile->save();
 
-		return redirect()->back()->with('success', 'Zaktualizowano');
+		return redirect("/users/$user->id");
 	}//endFunction
 
 }//endClass

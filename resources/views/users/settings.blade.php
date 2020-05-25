@@ -66,8 +66,8 @@
                         </div>
                         <div class="col-8">
                             <select name="gender" id="gender" class="custom-select">
-                                <option value="m">Mężczyzna</option>
-                                <option value="f">Kobieta</option>
+                                <option value="m" {{(old('gender', $user->profile->gender)=='m'?"selected":"")}}>Mężczyzna</option>
+                                <option value="f" {{(old('gender', $user->profile->gender)=='f'?"selected":"")}}>Kobieta</option>
                             </select>
                         </div>
                     </div>
