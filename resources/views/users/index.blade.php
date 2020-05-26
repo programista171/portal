@@ -55,7 +55,7 @@
                 <span class="ml-auto"> {{$entry->created_at}}</span>
             </div>
             <div class="card-body">
-                <p>{{$entry->content}}</p>
+                <p>{!!$entry->content!!}</p>
             </div>
             <div class="card-footer row">
                 <a href="{{url('/posts')}}/{{$entry->id}}" class="btn btn-primary mr-auto"> Otwarte zdarzenie </a>

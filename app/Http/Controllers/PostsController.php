@@ -77,11 +77,12 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
+    public function update(Request $request, $id){
+$entry = Post::find($id);
+$entry->content = $request->content;
+$entry->save();
+return redirect()->route('posts.index');
+}//endFunction
     /**
      * Remove the specified resource from storage.
      *
@@ -89,6 +90,9 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id){
+$post = Post::find($id);
+$post->delete();
+return redirect()->route('posts.index');
 }//endFunction
 
 	public function createComment(Request $request){

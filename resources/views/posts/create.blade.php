@@ -7,7 +7,11 @@
 		<label for="content">
 Czym chcesz się podzielić?
             </label>
-		<input type="text" name="content" id = "content" autofocus>
+		<textarea name="content" id = "content" autofocus></textarea>
 		<button type="submit" name="add" id="add">Opublikuj</button>
 	</form>
+<script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('content');
+</script>
 @endsection

@@ -15,7 +15,7 @@
                 <span class="ml-auto"> {{$post->created_at}}</span>
             </div>
             <div class="card-body">
-                <p>{{$post->content}}</p>
+                <p>{!!$post->content!!}</p>
             </div>
             <div class="card-footer row">
                 <a href="{{url('/posts')}}/{{$post->id}}" class="btn btn-primary mr-auto"> Otwarte zdarzenie </a>
@@ -26,7 +26,7 @@
                 </form>
                 @if(Auth::user()->id === $post->user->id)
                     <a href="{{url('/posts')}}/{{$post->id}}/edit">Edytuj post</a>
-                    <a href="">Usuń post</a>
+                    <a href="{{url('/posts')}}/{{$post->id}}/destroy">Usuń post</a>
 
                 @endif
             </div>
