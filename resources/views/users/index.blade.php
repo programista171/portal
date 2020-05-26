@@ -36,7 +36,10 @@
                     <b> Płeć: </b> <span class="ml-auto"> {{$user->profile->gender}} </span>
                 </div>
                 <div class="row">
+@if($user->profile->description != '')
                     <b> Opis: </b> <span class="ml-auto">  {{$user->profile->description}} </span>
+@endif
+
                 </div>
             </div>
             <div class="col-12 col-md-8 overflow-auto">
