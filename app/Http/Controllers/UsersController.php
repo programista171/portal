@@ -13,6 +13,7 @@ use phpDocumentor\Reflection\Types\Boolean;
 class UsersController extends Controller{
 	public function index($id){
 		$user = User::find($id);
+		if( $user !== null ) {
 		switch($user->profile->gender){
 			case 'm':
 				$user->profile->gender = 'mężczyzna';
@@ -25,7 +26,11 @@ class UsersController extends Controller{
 				break;
 			}//endSwitch
 $entries = $user->posts->take(5);
-		return view('users.index')->with('user', $user)->with('entries', $entries);
+            return view('users.index')->with('user', $user);
+        }
+		else {
+		    return view("users.404");
+        }
 	}//endFunction
 
 

@@ -58,9 +58,12 @@ class PostsController extends Controller
     public function show($id)
     {
         $entry = Post::find($id);
-        //$comments = Comment::all();
-        $comments = $entry->comments;
-        return view('posts.show')->with('entry', $entry)->with('comments', $comments);
+        if( $entry !== null ) {
+            $comments = $entry->comments;
+            return view('posts.show')->with('entry', $entry)->with('comments', $comments);
+        }
+
+        return view("posts.404");
     }
 
     /**
