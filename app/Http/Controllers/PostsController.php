@@ -65,10 +65,10 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-	public function edit($id)
-    {
-        //
-    }
+	public function edit($id){
+		$entry = Post::find($id);
+		return view('posts.edit')->with('entry', $entry);
+	}//endFunction
 
     /**
      * Update the specified resource in storage.

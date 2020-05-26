@@ -25,7 +25,9 @@
                     <button type="submit" name="dislike" id="dislike" class="btn btn-danger">Nie lubię tego!</button>
                 </form>
                 @if(Auth::user()->id === $post->user->id)
-                    To mój post
+                    <a href="{{url('/posts')}}/{{$post->id}}/edit">Edytuj post</a>
+                    <a href="">Usuń post</a>
+
                 @endif
             </div>
         </div>
