@@ -18,7 +18,7 @@
                 <p>{{$post->content}}</p>
             </div>
             <div class="card-footer row">
-                <a href="{{url('/posts')}}/{{$post->id}}" class="btn btn-primary mr-auto"> Otwarte zdarzenie </a>
+                <a href="{{url('/posts')}}/{{$post->id}}" class="btn btn-primary mr-auto">{{count($post->reactions)}} reakcji, {{count($post->comments)}} komentarzy</a>
                 <form method="POST" action="{{url('/reactions/store')}}">
                     @csrf
                     <button type="submit" name="like" id="like" class="btn btn-success">Lubię to!</button>
@@ -30,4 +30,26 @@
             </div>
         </div>
     @endforeach
+    <script>
+        $('.reaction').on('click', function () {
+            $.ajaxSetup({
+                headers:
+                    {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+            });
+            $.ajax({
+                method: 'post',
+                url: `/posts/react`,
+                data: {
+                    post_id: $(this).attr('data-post_id'),
+                    reaction: $(this).attr('data-reaction')
+                }
+            })
+                .done(result => {
+                    $(this).addClass("seleced-reaction");
+                })
+                .fail(error => {
+                    console.log(error);
+                })
+        });
+    </script>
 @endsection
