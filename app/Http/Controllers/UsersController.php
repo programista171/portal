@@ -12,7 +12,12 @@ use phpDocumentor\Reflection\Types\Boolean;
 class UsersController extends Controller{
 	public function index($id){
 		$user = User::find($id);
-		return view('users.index')->with('user', $user);
+		if( $user !== null ) {
+            return view('users.index')->with('user', $user);
+        }
+		else {
+		    return view("users.404");
+        }
 	}//endFunction
 
 
