@@ -72,10 +72,10 @@ class PostsController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+	public function edit($id){
+		$entry = Post::find($id);
+		return view('posts.edit')->with('entry', $entry);
+	}//endFunction
 
     /**
      * Update the specified resource in storage.
@@ -84,33 +84,35 @@ class PostsController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
+    public function update(Request $request, $id){
+$entry = Post::find($id);
+$entry->content = $request->content;
+$entry->save();
+return redirect()->route('posts.index');
+}//endFunction
     /**
      * Remove the specified resource from storage.
      *
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-    }//endFunction
+    public function destroy($id){
+$post = Post::find($id);
+$post->delete();
+return redirect()->route('posts.index');
+}//endFunction
 
-    public function createComment(Request $request)
-    {
-        $this->validate($request, [
-            'comment' => 'required'
-        ]);
-        $comment = new Comment();
-        $comment->content = $request->comment;
-        $comment->userid = Auth::user()->id;
-        $comment->postid = $request->postid;
-        $comment->save();
-        return redirect("posts/$request->postid");
-    }//endFunction
+	public function createComment(Request $request){
+		$this->validate($request, [
+			'comment' => 'required'
+		]);
+		$comment = new Comment();
+		$comment->content = $request->comment;
+		$comment->userid = Auth::user()->id;
+		$comment->postid = $request->postid;
+		$comment->save();
+		return redirect("posts/$request->postid");
+	}//endFunction
 
 
     public function react( Request $request )

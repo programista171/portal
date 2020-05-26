@@ -1,9 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-    <form action="{{url('/posts/create')}}">
-        <button type="submit">Opublikuj</button>
-    </form>
+	<form action="{{url('posts/createpost')}}" method="post">
+		@csrf
+		<label for="content">
+Czym chcesz się podzielić?
+            </label>
+		<textarea name="content" id = "content"></textarea>
+		<button type="submit" name="add" id="add">Opublikuj</button>
+	</form>
+<script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('content');
+</script>
     @foreach($posts as $post)
         <div class="card">
             <div class="card-header row">
@@ -15,7 +24,7 @@
                 <span class="ml-auto"> {{$post->created_at}}</span>
             </div>
             <div class="card-body">
-                <p>{{$post->content}}</p>
+                <p>{!!$post->content!!}</p>
             </div>
             <div class="card-footer row">
                 <a href="{{url('/posts')}}/{{$post->id}}" class="btn btn-primary mr-auto">{{count($post->reactions)}} reakcji, {{count($post->comments)}} komentarzy</a>
@@ -25,7 +34,12 @@
                     <button type="submit" name="dislike" id="dislike" class="btn btn-danger">Nie lubię tego!</button>
                 </form>
                 @if(Auth::user()->id === $post->user->id)
-                    To mój post
+                    <a href="{{url('/posts')}}/{{$post->id}}/edit">Edytuj post</a>
+<form action="{{route('posts.destroy', $post->id)}}" method="POST">
+@csrf
+@method('DELETE')
+<button type="submit">Usuń post</button>
+</form>
                 @endif
             </div>
         </div>

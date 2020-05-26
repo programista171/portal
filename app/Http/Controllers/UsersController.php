@@ -26,7 +26,7 @@ class UsersController extends Controller{
 				break;
 			}//endSwitch
 $entries = $user->posts->take(5);
-            return view('users.index')->with('user', $user);
+            return view('users.index')->with('user', $user)->with('entries', $entries);
         }
 		else {
 		    return view("users.404");
