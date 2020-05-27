@@ -58,14 +58,19 @@
                 <p>{!!$entry->content!!}</p>
             </div>
             <div class="card-footer row">
-                <a href="{{url('/posts')}}/{{$entry->id}}" class="btn btn-primary mr-auto"> Otwarte zdarzenie </a>
+                <a href="{{url('/posts')}}/{{$entry->id}}" class="btn btn-primary mr-auto">{{count($entry->reactions)}} reakcji, {{count($entry->comments)}} komentarzy</a>
                 <form method="POST" action="{{url('/reactions/store')}}">
                     @csrf
                     <button type="submit" name="like" id="like" class="btn btn-success">Lubię to!</button>
                     <button type="submit" name="dislike" id="dislike" class="btn btn-danger">Nie lubię tego!</button>
                 </form>
                 @if(Auth::user()->id === $entry->user->id)
-                    To mój post
+                    <a href="{{url('/posts')}}/{{$entry->id}}/edit">Edytuj post</a>
+<form action="{{route('posts.destroy', $entry->id)}}" method="POST">
+@csrf
+@method('DELETE')
+<button type="submit">Usuń post</button>
+</form>
                 @endif
             </div>
         </div>
