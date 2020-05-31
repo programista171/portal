@@ -15,10 +15,10 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-$table->foreignId('user_id');
-$table->char('gender')->nullable();
-$table->string('image')->nullable()->default('profile_images/default.jpg');
-$table->text('description')->nullable();
+            $table->foreignId('user_id');
+            $table->char('gender')->nullable();
+            $table->string('image')->default('profile_images/default.jpg');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

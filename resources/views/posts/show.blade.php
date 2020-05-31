@@ -6,7 +6,7 @@
 {{$entry->created_at}}
 </div>
 <div id="entryContent" class="entryContent">
-{{$entry->content}}
+{!!$entry->content!!}
 </div>
 <h2>Komentarze {{count($comments)}}</h2>
 <div id="comments" class="comments">

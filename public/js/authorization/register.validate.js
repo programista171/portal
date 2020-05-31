@@ -11,7 +11,7 @@ $("form#register-form").validate({
         firstname: {
             required: true,
         },
-        lastnast: {
+        lastname: {
             required: true,
         },
         email: {

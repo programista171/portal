@@ -40,7 +40,7 @@ use Searchable;
     ];
 //get the posts owned by the specific user
 	public function posts(){
-		return $this->hasMany(Post::class, 'userid');
+		return $this->hasMany(Post::class, 'userid')->orderBy('created_at', 'desc');
 	}//endFunction
 
 //get the comments owned by the specific user
