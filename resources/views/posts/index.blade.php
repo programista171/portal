@@ -44,6 +44,7 @@ Czym chcesz się podzielić?
             </div>
         </div>
     @endforeach
+{{$posts->links()}}
     <script>
         $('.reaction').on('click', function () {
             $.ajaxSetup({
